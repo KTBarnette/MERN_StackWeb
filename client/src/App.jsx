@@ -1,16 +1,17 @@
 import './App.css';
-
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import BookList from './components/BookList';
 
 function App() {
+    const API_BASE = import.meta.env.VITE_API_URL;
+
     const [books, setBooks] = useState([]);
     const [view, setView] = useState('available'); // 'available' or 'checked out'
 
     const fetchBooks = () => {
         const route = view === 'available' ? '/books' : '/books/out';
-        axios.get(`http://localhost:5000${route}`)
+        axios.get(`${API_BASE}${route}`)
             .then(res => setBooks(res.data))
             .catch(err => console.error('Error fetching books:', err));
     };
@@ -20,13 +21,13 @@ function App() {
     }, [view]); // Re-fetch books when view changes
 
     const handleCheckin = (id) => {
-        axios.post(`http://localhost:5000/books/${id}/checkin`)
+        axios.post(`${API_BASE}/books/${id}/checkin`)
             .then(() => fetchBooks())
             .catch(err => console.error('Checkin error:', err));
     };
 
     const handleCheckout = (id) => {
-        axios.post(`http://localhost:5000/books/${id}/checkout`, {
+        axios.post(`${API_BASE}/books/${id}/checkout`, {
             checkedOutBy: "Frontend User",
             dueDate: "2025-06-01"
         })
