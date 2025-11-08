@@ -60,12 +60,3 @@ Create a `.env` file inside the `server/` folder with the following:
 MONGO_URI=your_mongo_connection_string
 PORT=5000
 ```
-
----
-
-## 🤝 Contributing
-1. Fork the repo
-2. Create your feature branch (`git checkout -b feature/your-feature`)
-3. Commit changes (`git commit -m 'Add new feature'`)
-4. Push to branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
